@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
+import Image from 'next/image'
 import { cn } from '@/lib/utils'
 import { ThemeToggle } from '@/components/theme-toggle'
 
@@ -66,10 +67,13 @@ export function Navbar() {
             className="flex items-center gap-2 group"
             onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }) }}
           >
-            <img
+            <Image
               src="/logo-sin-fondo.svg"
               alt="Itherum"
-              className="h-11 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+              width={44}
+              height={44}
+              className="object-contain transition-transform duration-300 group-hover:scale-105"
+              priority
             />
           </a>
 

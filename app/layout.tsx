@@ -1,9 +1,9 @@
 import type { Metadata, Viewport } from 'next'
 import { Syne, DM_Sans } from 'next/font/google'
-import { Toaster } from 'sonner'
 import './globals.css'
 import { ThemeProvider } from '@/components/theme-provider'
 import { CustomCursor } from '@/components/custom-cursor'
+import { LazyToaster } from '@/components/lazy-toaster'
 import AgentationWrapper from './components/AgentationWrapper'
 
 const syne = Syne({
@@ -52,20 +52,27 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" className={`${syne.variable} ${dmSans.variable}`} suppressHydrationWarning>
+      <head>
+        <link
+          rel="preload"
+          href="https://fonts.gstatic.com/s/syne/v22/8vIS7w4qzmVxsWxjBZRjr0FKM_04uQ.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
+          href="https://fonts.gstatic.com/s/dmsans/v15/rP2Hp2ywxg089UriCZOIHQ.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+      </head>
       <body className="font-sans antialiased" style={{ backgroundColor: 'var(--color-bg)', color: 'var(--color-text-primary)' }}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
           <CustomCursor />
           {children}
-          <Toaster
-            position="bottom-right"
-            toastOptions={{
-              style: {
-                background: 'var(--color-surface)',
-                border: '1px solid var(--color-border)',
-                color: 'var(--color-text-primary)',
-              },
-            }}
-          />
+          <LazyToaster />
         </ThemeProvider>
         {process.env.NODE_ENV === 'development' && <AgentationWrapper />}
       </body>

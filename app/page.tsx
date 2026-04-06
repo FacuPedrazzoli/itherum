@@ -1,14 +1,27 @@
+import { lazy, Suspense } from 'react'
 import { Navbar } from '@/components/navbar'
 import { Hero } from '@/components/hero'
-import { Servicios } from '@/components/servicios'
-import { Nosotros } from '@/components/nosotros'
-import { Proyectos } from '@/components/proyectos'
-import { Diferencial } from '@/components/diferencial'
-import { Stack } from '@/components/stack'
-import { Testimonios } from '@/components/testimonios'
-import { CTA } from '@/components/cta'
-import { Footer } from '@/components/footer'
 import { ScrollProgress, ScrollToTop } from '@/components/scroll-utils'
+
+const Servicios = lazy(() => import('@/components/servicios').then(m => ({ default: m.Servicios })))
+const Nosotros = lazy(() => import('@/components/nosotros').then(m => ({ default: m.Nosotros })))
+const Proyectos = lazy(() => import('@/components/proyectos').then(m => ({ default: m.Proyectos })))
+const Diferencial = lazy(() => import('@/components/diferencial').then(m => ({ default: m.Diferencial })))
+const Stack = lazy(() => import('@/components/stack').then(m => ({ default: m.Stack })))
+const Testimonios = lazy(() => import('@/components/testimonios').then(m => ({ default: m.Testimonios })))
+const CTA = lazy(() => import('@/components/cta').then(m => ({ default: m.CTA })))
+const Footer = lazy(() => import('@/components/footer').then(m => ({ default: m.Footer })))
+
+const fallbacks = {
+  Servicios: <div className="min-h-[60vh]" />,
+  Nosotros: <div className="min-h-[50vh]" />,
+  Proyectos: <div className="min-h-[70vh]" />,
+  Diferencial: <div className="min-h-[40vh]" />,
+  Stack: <div className="min-h-[30vh]" />,
+  Testimonios: <div className="min-h-[50vh]" />,
+  CTA: <div className="min-h-[40vh]" />,
+  Footer: <div className="min-h-[20vh]" />,
+}
 
 const organizationJsonLd = {
   '@context': 'https://schema.org',
@@ -41,14 +54,14 @@ export default function Home() {
         <ScrollToTop />
         <Navbar />
         <Hero />
-        <Servicios />
-        <Nosotros />
-        <Proyectos />
-        <Diferencial />
-        <Stack />
-        <Testimonios />
-        <CTA />
-        <Footer />
+        <Suspense fallback={fallbacks.Servicios}><Servicios /></Suspense>
+        <Suspense fallback={fallbacks.Nosotros}><Nosotros /></Suspense>
+        <Suspense fallback={fallbacks.Proyectos}><Proyectos /></Suspense>
+        <Suspense fallback={fallbacks.Diferencial}><Diferencial /></Suspense>
+        <Suspense fallback={fallbacks.Stack}><Stack /></Suspense>
+        <Suspense fallback={fallbacks.Testimonios}><Testimonios /></Suspense>
+        <Suspense fallback={fallbacks.CTA}><CTA /></Suspense>
+        <Suspense fallback={fallbacks.Footer}><Footer /></Suspense>
       </main>
     </>
   )

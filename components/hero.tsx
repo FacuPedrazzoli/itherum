@@ -3,6 +3,7 @@
 import { useEffect, useState, useRef } from 'react'
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
 import { ChevronDown } from 'lucide-react'
+import { useIsMobile } from '@/hooks/use-mobile'
 
 const WORDS = ['Construimos', 'tecnología', 'con', 'sentido', 'común.']
 
@@ -73,12 +74,13 @@ function AnimatedHeadline() {
   )
 }
 
-function FloatingParticle({ delay, duration, size, startX, startY }: {
+function FloatingParticle({ delay, duration, size, startX, startY, willChange }: {
   delay: number
   duration: number
   size: number
   startX: number
   startY: number
+  willChange?: boolean
 }) {
   return (
     <motion.div
@@ -91,6 +93,7 @@ function FloatingParticle({ delay, duration, size, startX, startY }: {
         backgroundColor: 'var(--color-accent)',
         opacity: 0.15,
         filter: 'blur(1px)',
+        willChange: willChange ? 'transform' : 'auto',
       }}
       animate={{
         y: [0, -120, 0],
@@ -108,42 +111,83 @@ function FloatingParticle({ delay, duration, size, startX, startY }: {
   )
 }
 
+const orbAnimations = [
+  { name: 'orb1', duration: '20s' },
+  { name: 'orb2', duration: '25s' },
+  { name: 'orb3', duration: '22s' },
+  { name: 'orb4', duration: '18s' },
+  { name: 'orb5', duration: '28s' },
+]
+
 function MeshGradient() {
+  const [reducedMotion, setReducedMotion] = useState(false)
+  const [isVisible, setIsVisible] = useState(true)
+
+  useEffect(() => {
+    const mql = window.matchMedia('(prefers-reduced-motion: reduce)')
+    setReducedMotion(mql.matches)
+    const handler = () => setReducedMotion(mql.matches)
+    mql.addEventListener('change', handler)
+    return () => mql.removeEventListener('change', handler)
+  }, [])
+
+  useEffect(() => {
+    const handleVisibility = () => setIsVisible(!document.hidden)
+    document.addEventListener('visibilitychange', handleVisibility)
+    return () => document.removeEventListener('visibilitychange', handleVisibility)
+  }, [])
+
   const orbs = [
-    { x: '20%', y: '30%', size: 600, color: 'hsl(157 76% 61% / 0.12)', duration: 20 },
-    { x: '70%', y: '20%', size: 500, color: 'hsl(270 60% 50% / 0.06)', duration: 25 },
-    { x: '80%', y: '70%', size: 550, color: 'hsl(200 70% 50% / 0.05)', duration: 22 },
-    { x: '15%', y: '75%', size: 480, color: 'hsl(157 76% 61% / 0.08)', duration: 18 },
-    { x: '50%', y: '50%', size: 700, color: 'hsl(157 50% 50% / 0.04)', duration: 28 },
+    { x: '20%', y: '30%', size: 600, color: 'hsl(157 76% 61% / 0.12)', anim: 'orb1' },
+    { x: '70%', y: '20%', size: 500, color: 'hsl(270 60% 50% / 0.06)', anim: 'orb2' },
+    { x: '80%', y: '70%', size: 550, color: 'hsl(200 70% 50% / 0.05)', anim: 'orb3' },
+    { x: '15%', y: '75%', size: 480, color: 'hsl(157 76% 61% / 0.08)', anim: 'orb4' },
+    { x: '50%', y: '50%', size: 700, color: 'hsl(157 50% 50% / 0.04)', anim: 'orb5' },
   ]
 
   return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      {orbs.map((orb, i) => (
-        <motion.div
-          key={i}
-          className="absolute rounded-full blur-3xl"
-          style={{
-            left: orb.x,
-            top: orb.y,
-            width: orb.size,
-            height: orb.size,
-            background: orb.color,
-            x: '-50%',
-            y: '-50%',
-          }}
-          animate={{
-            x: ['-50%', '-45%', '-55%', '-50%'],
-            y: ['-50%', '-45%', '-55%', '-50%'],
-          }}
-          transition={{
-            duration: orb.duration,
-            repeat: Infinity,
-            ease: 'easeInOut',
-          }}
-        />
-      ))}
-    </div>
+    <>
+      <style>{`
+        @keyframes orb1 {
+          0%, 100% { transform: translate(-50%, -50%) scale(1); }
+          50% { transform: translate(-45%, -55%) scale(1.1); }
+        }
+        @keyframes orb2 {
+          0%, 100% { transform: translate(-50%, -50%) scale(1); }
+          50% { transform: translate(-55%, -45%) scale(1.05); }
+        }
+        @keyframes orb3 {
+          0%, 100% { transform: translate(-50%, -50%) scale(1); }
+          50% { transform: translate(-48%, -52%) scale(1.08); }
+        }
+        @keyframes orb4 {
+          0%, 100% { transform: translate(-50%, -50%) scale(1); }
+          50% { transform: translate(-52%, -48%) scale(1.1); }
+        }
+        @keyframes orb5 {
+          0%, 100% { transform: translate(-50%, -50%) scale(1); }
+          50% { transform: translate(-46%, -54%) scale(1.06); }
+        }
+      `}</style>
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {orbs.map((orb, i) => (
+          <div
+            key={i}
+            className="absolute rounded-full blur-3xl"
+            style={{
+              left: orb.x,
+              top: orb.y,
+              width: orb.size,
+              height: orb.size,
+              background: orb.color,
+              transform: 'translate(-50%, -50%)',
+              animation: reducedMotion ? 'none' : `${orb.anim} ${orbAnimations[i].duration} ease-in-out infinite`,
+              animationPlayState: reducedMotion || !isVisible ? 'paused' : 'running',
+            }}
+          />
+        ))}
+      </div>
+    </>
   )
 }
 
@@ -190,6 +234,7 @@ export function Hero() {
   const [showSecondLine, setShowSecondLine] = useState(false)
   const [mounted, setMounted] = useState(false)
   const ref = useRef<HTMLElement>(null)
+  const isMobile = useIsMobile()
 
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -210,7 +255,19 @@ export function Hero() {
     }
   }, [])
 
-  const particles = Array.from({ length: 20 }, (_, i) => ({
+  const [reducedMotion, setReducedMotion] = useState(false)
+  
+  useEffect(() => {
+    const mql = window.matchMedia('(prefers-reduced-motion: reduce)')
+    setReducedMotion(mql.matches)
+    const handler = () => setReducedMotion(mql.matches)
+    mql.addEventListener('change', handler)
+    return () => mql.removeEventListener('change', handler)
+  }, [])
+  
+  const particleCount = reducedMotion ? 0 : isMobile ? 6 : 12
+  
+  const particles = Array.from({ length: particleCount }, (_, i) => ({
     delay: Math.random() * 10,
     duration: 12 + Math.random() * 15,
     size: 3 + Math.random() * 6,
@@ -229,7 +286,7 @@ export function Hero() {
       {mounted && (
         <div className="absolute inset-0 pointer-events-none">
           {particles.map((p, i) => (
-            <FloatingParticle key={i} {...p} />
+            <FloatingParticle key={i} {...p} willChange={!isMobile} />
           ))}
         </div>
       )}

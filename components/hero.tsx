@@ -31,11 +31,11 @@ function AnimatedHeadline() {
 
   return (
     <h1
-      className="font-heading font-black text-[clamp(3.5rem,10vw,9rem)] leading-[0.9] tracking-[-0.05em] mb-10"
+      className="font-heading font-black text-[clamp(2rem,8vw,9rem)] leading-[0.95] tracking-[-0.04em] mb-8 px-2"
       style={{ color: 'var(--color-text-primary)' }}
     >
-      <div className="flex flex-col items-center gap-2">
-        <div className="flex flex-wrap justify-center gap-x-3">
+      <div className="flex flex-col items-center gap-1 sm:gap-2">
+        <div className="flex flex-wrap justify-center gap-x-2 sm:gap-x-3">
           {WORDS.slice(0, 2).map((word, i) => (
             <motion.span
               key={i}
@@ -68,7 +68,7 @@ function AnimatedHeadline() {
               initial={{ opacity: 0, y: 30, filter: 'blur(8px)' }}
               animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
               transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-              className="flex flex-wrap justify-center gap-x-3"
+              className="flex flex-wrap justify-center gap-x-2 sm:gap-x-3"
             >
               {WORDS.slice(2).map((word, i) => (
                 <motion.span
@@ -191,7 +191,7 @@ function TypewriterText({ text, delay }: { text: string; delay: number }) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.3, delay }}
-      className="text-lg md:text-xl max-w-2xl mx-auto"
+      className="text-base sm:text-lg md:text-xl max-w-2xl mx-auto px-2 sm:px-0"
       style={{ color: 'var(--color-text-muted)', lineHeight: 1.7 }}
     >
       {displayed}
@@ -263,7 +263,7 @@ export function Hero() {
 
       <motion.div 
         style={{ y, opacity, scale }}
-        className="relative z-10 max-w-6xl mx-auto px-6 flex flex-col items-center text-center"
+        className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 flex flex-col items-center text-center"
       >
         <AnimatedHeadline />
 
@@ -290,13 +290,13 @@ export function Hero() {
               initial={{ opacity: 0, y: 30, scale: 0.9 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="flex flex-col sm:flex-row gap-5 justify-center mb-20"
+              className="flex flex-col sm:flex-row gap-4 sm:gap-5 justify-center mb-12 sm:mb-20 w-full px-4 sm:px-0"
             >
               <motion.a
                 href="#proyectos"
                 whileHover={{ scale: 1.05, boxShadow: '0 0 40px var(--color-accent-glow)' }}
                 whileTap={{ scale: 0.97 }}
-                className="group inline-flex items-center justify-center gap-3 px-10 py-4.5 rounded-sm font-semibold text-base"
+                className="group w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 sm:px-10 py-4 rounded-sm font-semibold text-sm sm:text-base"
                 style={{ backgroundColor: 'var(--color-accent)', color: 'var(--color-bg)' }}
               >
                 Ver proyectos
@@ -309,7 +309,7 @@ export function Hero() {
                 href="#contacto"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.97 }}
-                className="inline-flex items-center justify-center gap-3 px-10 py-4.5 rounded-sm font-medium text-base"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 sm:px-10 py-4 rounded-sm font-medium text-sm sm:text-base"
                 style={{
                   border: '1px solid var(--color-border)',
                   color: 'var(--color-text-primary)',
@@ -328,7 +328,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              className="relative w-full max-w-lg md:max-w-3xl mx-auto px-4"
+              className="relative w-full max-w-sm md:max-w-3xl mx-auto px-2 sm:px-4"
             >
               <div 
                 className="absolute inset-0 opacity-[0.03] pointer-events-none"
@@ -338,7 +338,7 @@ export function Hero() {
                 }}
               />
               
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 pt-6 md:pt-8" style={{ borderTop: '1px solid var(--color-border)' }}>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8 pt-6 md:pt-8" style={{ borderTop: '1px solid var(--color-border)' }}>
                 {[
                   { value: `+${c1}`, label: 'Proyectos', suffix: '' },
                   { value: c2, label: 'Servicios', suffix: '' },
@@ -352,7 +352,7 @@ export function Hero() {
                     className="text-center"
                   >
                     <motion.p 
-                      className="font-heading font-black text-[clamp(1.8rem,6vw,6.3rem)] leading-[1] tracking-[-0.04em]"
+                      className="font-heading font-black text-[clamp(1.5rem,5vw,6.3rem)] leading-[1] tracking-[-0.04em]"
                       style={{ color: 'var(--color-accent)' }}
                       initial={{ scale: 0.5 }}
                       animate={{ scale: 1 }}

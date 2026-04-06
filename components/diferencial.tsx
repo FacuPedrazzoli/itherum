@@ -76,7 +76,7 @@ export function Diferencial() {
   return (
     <section
       id="diferencial"
-      className="py-24 md:py-32"
+      className="py-24 md:py-32 relative"
       style={{
         backgroundColor: 'var(--color-surface)',
         borderTop: '1px solid var(--color-border)',

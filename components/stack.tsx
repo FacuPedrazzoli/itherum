@@ -49,7 +49,7 @@ function TechItem({ name, isLast }: { name: string; isLast: boolean }) {
 
 export function Stack() {
   return (
-    <section id="stack" className="py-24 md:py-32" style={{ backgroundColor: 'var(--color-bg)' }}>
+    <section id="stack" className="py-24 md:py-32 relative" style={{ backgroundColor: 'var(--color-bg)' }}>
       <div className="max-w-6xl mx-auto px-6">
         <motion.div
           variants={containerVariants}

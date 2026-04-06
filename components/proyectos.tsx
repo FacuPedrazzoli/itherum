@@ -117,12 +117,12 @@ function ProjectModal({
   }, [project])
 
   const goToPrevious = useCallback(() => {
-    if (!project) return
+    if (!project || !project.images.length) return
     setCurrentImageIndex((prev) => (prev === 0 ? project.images.length - 1 : prev - 1))
   }, [project])
 
   const goToNext = useCallback(() => {
-    if (!project) return
+    if (!project || !project.images.length) return
     setCurrentImageIndex((prev) => (prev === project.images.length - 1 ? 0 : prev + 1))
   }, [project])
 
@@ -190,14 +190,17 @@ function ProjectModal({
                   transition={{ duration: 0.25 }}
                   className="absolute inset-0 flex items-center justify-center"
                 >
-                  <Image
-                    src={project.images[currentImageIndex].src}
-                    alt={project.images[currentImageIndex].alt}
-                    fill
-                    className="object-contain"
-                    style={{ backgroundColor: 'var(--color-bg)' }}
-                    priority
-                  />
+                  {project.images[currentImageIndex] && (
+                    <Image
+                      src={project.images[currentImageIndex].src}
+                      alt={project.images[currentImageIndex].alt}
+                      fill
+                      sizes="75vw"
+                      className="object-contain"
+                      style={{ backgroundColor: 'var(--color-bg)' }}
+                      priority
+                    />
+                  )}
                 </motion.div>
               </AnimatePresence>
 
@@ -297,6 +300,7 @@ function ProjectModal({
                         src={img.src}
                         alt={img.alt}
                         fill
+                        sizes="64px"
                         className="object-cover rounded-xl"
                       />
                     </button>
@@ -407,6 +411,7 @@ function CarouselCard3D({
           src={project.images[0].src}
           alt={project.title}
           fill
+          sizes="(max-width: 768px) 90vw, 850px"
           className="object-cover"
           style={{ transform: 'scale(1.1)' }}
           priority={isActive}

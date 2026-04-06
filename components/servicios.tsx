@@ -38,7 +38,7 @@ export function Servicios() {
   return (
     <section 
       id="servicios" 
-      className="py-24 md:py-32"
+      className="py-24 md:py-32 relative"
       style={{ backgroundColor: 'var(--color-bg)' }}
     >
       <div className="max-w-6xl mx-auto px-6">

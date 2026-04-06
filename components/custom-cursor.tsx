@@ -7,10 +7,10 @@ export function CustomCursor() {
   const cursorX = useMotionValue(-100)
   const cursorY = useMotionValue(-100)
 
-  const springConfig = { damping: 30, stiffness: 300 }
-  const cursorXSpring = useSpring(cursorX, springConfig)
-  const cursorYSpring = useSpring(cursorY, springConfig)
-  
+  const springConfig = { damping: 25, stiffness: 800 }
+  const cursorXSpring = useSpring(cursorX, { ...springConfig, stiffness: 800 })
+  const cursorYSpring = useSpring(cursorY, { ...springConfig, stiffness: 800 })
+
   const [isHovering, setIsHovering] = useState(false)
   const [isClicking, setIsClicking] = useState(false)
   const [isHidden, setIsHidden] = useState(false)
@@ -19,27 +19,23 @@ export function CustomCursor() {
 
   useEffect(() => {
     const updateCursorPosition = (e: MouseEvent) => {
-      cursorX.set(e.clientX - 10)
-      cursorY.set(e.clientY - 10)
+      cursorX.set(e.clientX - 4)
+      cursorY.set(e.clientY - 4)
     }
 
     const handleMouseMove = (e: MouseEvent) => {
       updateCursorPosition(e)
 
       const target = e.target as HTMLElement
-      const isInteractive = target.closest('button, a, [role="button"], input, textarea, select')
-      setIsHovering(!!isInteractive)
+      const isInteractive = target.closest(
+        'button, a, [role="button"], input, textarea, select, ' +
+        '[data-cursor-hover], .accordion-trigger, .carousel-item, ' +
+        '.project-card, .faq-item, [data-state="open"], .interactive'
+      )
+      const isLink = target.closest('a, [href], [data-link]')
       
-      if (isInteractive) {
-        const isLink = target.closest('a')
-        if (isLink) {
-          setHoverText('Ir')
-        } else {
-          setHoverText('')
-        }
-      } else {
-        setHoverText('')
-      }
+      setIsHovering(!!isInteractive)
+      setHoverText(isLink ? 'Ir' : '')
     }
 
     const handleMouseDown = () => setIsClicking(true)
@@ -58,7 +54,31 @@ export function CustomCursor() {
 
     document.body.style.cursor = 'none'
 
-    const timeout = setTimeout(() => setIsVisible(true), 500)
+    const forceCursorNone = () => {
+      const selectors = [
+        'button', 'a', 'input', 'textarea', 'select',
+        '[role="button"]', '[data-cursor-hover]',
+        '.accordion-trigger', '.carousel-item',
+        '.project-card', '.faq-item'
+      ]
+
+      selectors.forEach(selector => {
+        try {
+          document.querySelectorAll(selector).forEach(el => {
+            (el as HTMLElement).style.cursor = 'none'
+          })
+        } catch (e) {
+          // Ignore invalid selectors
+        }
+      })
+    }
+
+    forceCursorNone()
+
+    const observer = new MutationObserver(forceCursorNone)
+    observer.observe(document.body, { childList: true, subtree: true })
+
+    const timeout = setTimeout(() => setIsVisible(true), 300)
 
     return () => {
       window.removeEventListener('mousemove', handleMouseMove)
@@ -66,6 +86,7 @@ export function CustomCursor() {
       window.removeEventListener('mouseup', handleMouseUp)
       document.body.style.cursor = 'auto'
       clearTimeout(timeout)
+      observer.disconnect()
     }
   }, [cursorX, cursorY])
 
@@ -73,36 +94,40 @@ export function CustomCursor() {
     return null
   }
 
+  if (!isVisible && isHidden) return null
+
   return (
     <>
       {[0, 1, 2, 3, 4].map((i) => {
-        const delay = i * 0.025
-        const scale = 1 - i * 0.12
-        const opacity = 0.35 - i * 0.06
-        const size = 12 - i * 2
-        
+        const delay = i * 0.02
+        const scale = 1 - i * 0.15
+        const opacity = 0.4 - i * 0.08
+        const size = 10 - i * 1.5
+
         return (
           <motion.div
             key={i}
-            className="fixed top-0 left-0 pointer-events-none z-[9997]"
+            className="fixed top-0 left-0 pointer-events-none z-[99998]"
             style={{
               x: cursorX,
               y: cursorY,
-              translateX: '-50%',
-              translateY: '-50%',
             }}
             animate={{
-              x: cursorX.get() + delay * 50,
-              y: cursorY.get() + delay * 50,
+              x: cursorX.get() + delay * 15,
+              y: cursorY.get() + delay * 15,
             }}
-            transition={{ type: 'spring', stiffness: 150 - i * 20, damping: 20 }}
+            transition={{
+              type: 'spring',
+              stiffness: 500 - i * 60,
+              damping: 30,
+            }}
           >
             <motion.div
               animate={{
                 scale: isHidden ? 0 : scale,
                 opacity: isHidden ? 0 : opacity,
               }}
-              transition={{ duration: 0.15 }}
+              transition={{ duration: 0.1 }}
               className="rounded-full"
               style={{
                 width: size,
@@ -115,74 +140,76 @@ export function CustomCursor() {
       })}
 
       <motion.div
-        className="fixed top-0 left-0 pointer-events-none z-[9999]"
+        className="fixed top-0 left-0 pointer-events-none z-[100000]"
         style={{
           x: cursorXSpring,
           y: cursorYSpring,
-          translateX: '-50%',
-          translateY: '-50%',
         }}
+        animate={{
+          scale: isHidden ? 0 : isClicking ? 0.8 : isHovering ? 1.5 : 1,
+        }}
+        transition={{ type: 'spring', stiffness: 500, damping: 25 }}
       >
         <motion.div
           animate={{
-            scale: isClicking ? 0.7 : isHovering ? 1.8 : 1,
-            opacity: isHidden ? 0 : 1,
+            scale: isClicking ? 0.7 : 1,
           }}
-          transition={{ duration: 0.15 }}
+          transition={{ duration: 0.08 }}
           className="relative"
         >
           <div
             className="rounded-full"
             style={{
-              width: 12,
-              height: 12,
-              backgroundColor: isHovering ? 'var(--color-accent)' : 'white',
-              boxShadow: isHovering ? '0 0 20px var(--color-accent)' : 'none',
+              width: 8,
+              height: 8,
+              backgroundColor: isHovering ? 'var(--color-accent)' : '#ffffff',
+              boxShadow: isHovering
+                ? '0 0 12px var(--color-accent), 0 0 24px var(--color-accent)'
+                : '0 0 8px rgba(255,255,255,0.5)',
             }}
           />
-          
-          {isHovering && hoverText && (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8, x: '-50%' }}
-              animate={{ opacity: 1, scale: 1, x: '-50%' }}
-              exit={{ opacity: 0, scale: 0.8, x: '-50%' }}
-              className="absolute top-full left-1/2 mt-2 whitespace-nowrap"
-            >
-              <span 
-                className="px-3 py-1.5 rounded-full text-xs font-medium"
-                style={{ 
-                  backgroundColor: 'var(--color-accent)', 
-                  color: '#0a0f0c' 
-                }}
-              >
-                {hoverText} →
-              </span>
-            </motion.div>
-          )}
         </motion.div>
+
+        {isHovering && hoverText && (
+          <motion.div
+            initial={{ opacity: 0, y: 5, scale: 0.8 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 5, scale: 0.8 }}
+            transition={{ duration: 0.12 }}
+            className="absolute top-full left-1/2 -translate-x-1/2 mt-3"
+          >
+            <div
+              className="px-3 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap"
+              style={{
+                backgroundColor: 'var(--color-accent)',
+                color: 'var(--color-bg)',
+                boxShadow: '0 4px 20px -4px var(--color-accent)',
+              }}
+            >
+              {hoverText} →
+            </div>
+          </motion.div>
+        )}
       </motion.div>
 
       <motion.div
-        className="fixed top-0 left-0 pointer-events-none z-[9998]"
+        className="fixed top-0 left-0 pointer-events-none z-[99999]"
         style={{
           x: cursorXSpring,
           y: cursorYSpring,
-          translateX: '-50%',
-          translateY: '-50%',
         }}
+        animate={{
+          scale: isHidden ? 0 : isClicking ? 1.3 : isHovering ? 2 : 1.8,
+          opacity: isHidden ? 0 : isClicking ? 0.25 : isHovering ? 0.15 : 0.06,
+        }}
+        transition={{ type: 'spring', stiffness: 300, damping: 25 }}
       >
-        <motion.div
-          animate={{
-            scale: isClicking ? 1.5 : isHovering ? 3 : 2.5,
-            opacity: isHidden ? 0 : isHovering ? 0.15 : 0.08,
-          }}
-          transition={{ duration: 0.2 }}
+        <div
           className="rounded-full"
           style={{
-            width: 40,
-            height: 40,
-            backgroundColor: 'var(--color-accent)',
-            filter: 'blur(8px)',
+            width: 32,
+            height: 32,
+            background: 'radial-gradient(circle, var(--color-accent) 0%, transparent 70%)',
           }}
         />
       </motion.div>

@@ -23,6 +23,33 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 }
 
+function ProjectJsonLd({ project }: { project: { title: string; description: string; slug: string; category: string; stack: string[] } }) {
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: project.title,
+    description: project.description,
+    category: project.category,
+    brand: {
+      '@type': 'Brand',
+      name: 'Itherum',
+    },
+    provider: {
+      '@type': 'Organization',
+      name: 'Itherum',
+      url: 'https://itherum-eight.vercel.app',
+    },
+    url: `https://itherum-eight.vercel.app/work/${project.slug}`,
+  }
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+    />
+  )
+}
+
 export function generateStaticParams() {
   return projects.map((project) => ({
     slug: project.slug,
@@ -40,8 +67,10 @@ export default async function CaseStudyPage({ params }: Props) {
   const otherProjects = projects.filter((p) => p.slug !== slug).slice(0, 2)
 
   return (
-    <main className="min-h-screen" style={{ backgroundColor: 'var(--color-bg)' }}>
-      <div className="max-w-6xl mx-auto px-6 py-8">
+    <>
+      <ProjectJsonLd project={project} />
+      <main className="min-h-screen" style={{ backgroundColor: 'var(--color-bg)' }}>
+        <div className="max-w-6xl mx-auto px-6 py-8">
         <Link
           href="/work"
           className="inline-flex items-center gap-2 text-sm mb-8 transition-colors hover:text-[var(--color-accent)]"
@@ -325,5 +354,6 @@ export default async function CaseStudyPage({ params }: Props) {
         </div>
       </div>
     </main>
+    </>
   )
 }

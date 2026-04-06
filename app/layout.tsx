@@ -40,11 +40,6 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'es_AR',
   },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Itherum — Tecnología con sentido común',
-    description: 'Micro-agencia de software de Argentina. Construimos tecnología con sentido común.',
-  },
   icons: {
     icon: '/logo-sin-fondo.svg',
   },

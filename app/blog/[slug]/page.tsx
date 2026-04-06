@@ -22,6 +22,37 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 }
 
+function BlogJsonLd({ post }: { post: { title: string; excerpt: string; date: string; author: string; slug: string } }) {
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: post.title,
+    description: post.excerpt,
+    datePublished: post.date,
+    author: {
+      '@type': 'Organization',
+      name: post.author,
+      url: 'https://itherum-eight.vercel.app',
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Itherum',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://itherum-eight.vercel.app/logo-sin-fondo.svg',
+      },
+    },
+    url: `https://itherum-eight.vercel.app/blog/${post.slug}`,
+  }
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+    />
+  )
+}
+
 export function generateStaticParams() {
   return blogPosts.map((post) => ({
     slug: post.slug,
@@ -39,8 +70,10 @@ export default async function BlogPostPage({ params }: Props) {
   const otherPosts = blogPosts.filter((p) => p.slug !== slug).slice(0, 3)
 
   return (
-    <main className="min-h-screen pt-24 pb-16" style={{ backgroundColor: 'var(--color-bg)' }}>
-      <div className="max-w-4xl mx-auto px-6">
+    <>
+      <BlogJsonLd post={post} />
+      <main className="min-h-screen pt-24 pb-16" style={{ backgroundColor: 'var(--color-bg)' }}>
+        <div className="max-w-4xl mx-auto px-6">
         <Link
           href="/blog"
           className="inline-flex items-center gap-2 text-sm mb-8 transition-colors hover:text-[var(--color-accent)]"
@@ -150,5 +183,6 @@ export default async function BlogPostPage({ params }: Props) {
         </div>
       </div>
     </main>
+    </>
   )
 }

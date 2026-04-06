@@ -62,7 +62,7 @@ function AnimatedStat({ value, suffix, label }: { value: number; suffix: string;
 
 const stats = [
   { value: 7, suffix: '+', label: 'Años de experiencia' },
-  { value: 50, suffix: '+', label: 'Proyectos entregados' },
+  { value: 20, suffix: '+', label: 'Proyectos entregados' },
   { value: 98, suffix: '%', label: 'Tasa de retención' },
 ]
 

@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
-import { Clock, FolderOpen, Heart } from 'lucide-react'
+import { Clock, FolderOpen, CheckCircle2 } from 'lucide-react'
 
 const containerVariants = {
   hidden: {},
@@ -71,9 +71,9 @@ function AnimatedStat({ value, suffix, label }: { value: number; suffix: string;
 }
 
 const stats = [
-  { value: 7, suffix: '+', label: 'Años de experiencia', icon: Clock },
-  { value: 50, suffix: '+', label: 'Proyectos entregados', icon: FolderOpen },
-  { value: 99, suffix: '%', label: 'Clientes satisfechos', icon: Heart },
+  { value: 20, suffix: '+', label: 'Proyectos', icon: FolderOpen },
+  { value: 100, suffix: '%', label: 'Entregados', icon: CheckCircle2 },
+  { value: 24, suffix: 'h', label: 'Tiempo de respuesta', icon: Clock },
 ]
 
 const pillars = [

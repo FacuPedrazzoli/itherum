@@ -1,6 +1,5 @@
 import { Navbar } from '@/components/navbar'
 import { Hero } from '@/components/hero'
-import { LogoBar } from '@/components/logo-bar'
 import { Servicios } from '@/components/servicios'
 import { Nosotros } from '@/components/nosotros'
 import { Proyectos } from '@/components/proyectos'
@@ -18,7 +17,6 @@ export default function Home() {
       <ScrollToTop />
       <Navbar />
       <Hero />
-      <LogoBar />
       <Servicios />
       <Nosotros />
       <Proyectos />

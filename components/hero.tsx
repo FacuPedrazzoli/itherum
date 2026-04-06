@@ -1,28 +1,8 @@
 'use client'
 
-import { useEffect, useState, useRef, useCallback } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
 import { ChevronDown } from 'lucide-react'
-
-function useCountUp(target: number, duration = 1500, start = false) {
-  const [count, setCount] = useState(0)
-
-  useEffect(() => {
-    if (!start) return
-    if (target === 0) { setCount(0); return }
-    let startTime: number | null = null
-    const step = (timestamp: number) => {
-      if (!startTime) startTime = timestamp
-      const progress = Math.min((timestamp - startTime) / duration, 1)
-      const eased = 1 - Math.pow(1 - progress, 3)
-      setCount(Math.floor(eased * target))
-      if (progress < 1) requestAnimationFrame(step)
-    }
-    requestAnimationFrame(step)
-  }, [target, duration, start])
-
-  return count
-}
 
 const WORDS = ['Construimos', 'tecnología', 'con', 'sentido', 'común.']
 
@@ -206,7 +186,6 @@ function TypewriterText({ text, delay }: { text: string; delay: number }) {
 }
 
 export function Hero() {
-  const [started, setStarted] = useState(false)
   const [showSubtitle, setShowSubtitle] = useState(false)
   const [showSecondLine, setShowSecondLine] = useState(false)
   const [mounted, setMounted] = useState(false)
@@ -223,19 +202,13 @@ export function Hero() {
 
   useEffect(() => {
     setMounted(true)
-    const timer = setTimeout(() => setStarted(true), 100)
     const subtitleTimer = setTimeout(() => setShowSubtitle(true), 1200)
     const secondLineTimer = setTimeout(() => setShowSecondLine(true), 400)
     return () => {
-      clearTimeout(timer)
       clearTimeout(subtitleTimer)
       clearTimeout(secondLineTimer)
     }
   }, [])
-
-  const c1 = useCountUp(20, 1400, started)
-  const c2 = useCountUp(3, 1000, started)
-  const c3 = useCountUp(100, 1200, started)
 
   const particles = Array.from({ length: 20 }, (_, i) => ({
     delay: Math.random() * 10,
@@ -340,9 +313,9 @@ export function Hero() {
               
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8 pt-6 md:pt-8" style={{ borderTop: '1px solid var(--color-border)' }}>
                 {[
-                  { value: `+${c1}`, label: 'Proyectos', suffix: '' },
-                  { value: c2, label: 'Servicios', suffix: '' },
-                  { value: `${c3}%`, label: 'Código revisado', suffix: '' },
+                  { value: '20+', label: 'Proyectos', suffix: '' },
+                  { value: '100%', label: 'Código revisado', suffix: '' },
+                  { value: '24h', label: 'Tiempo de respuesta', suffix: '' },
                 ].map((stat, idx) => (
                   <motion.div 
                     key={idx}

@@ -121,7 +121,7 @@ export const blogPosts: BlogPost[] = [
       <p>Ofrecemos:</p>
       <ul>
         <li>Monitoreo de métricas las primeras 4 semanas</li>
-        <li>Support的反应 rápido para issues críticos</li>
+        <li>Support rápido para issues críticos</li>
         <li>Sesiones de retrospectiva para planificar la siguiente versión</li>
       </ul>
       

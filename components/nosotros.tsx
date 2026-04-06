@@ -152,7 +152,7 @@ export function Nosotros() {
           </p>
         </motion.div>
 
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
@@ -217,32 +217,6 @@ export function Nosotros() {
               </div>
             ))}
           </div>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-100px' }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="text-center"
-        >
-          <p className="text-base mb-6" style={{ color: 'var(--color-text-muted)' }}>
-            ¿Querés saber si podemos ayudarte con tu próximo proyecto?
-          </p>
-          
-          <motion.a
-            href="mailto:hola@itherum.com"
-            className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-semibold text-base transition-all duration-300"
-            style={{
-              backgroundColor: 'var(--color-accent)',
-              color: 'var(--color-bg)',
-            }}
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-          >
-            <MessageCircle size={20} />
-            Hablemos de tu proyecto
-          </motion.a>
         </motion.div>
       </div>
     </section>

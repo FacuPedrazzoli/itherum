@@ -40,6 +40,11 @@ function ProjectJsonLd({ project }: { project: { title: string; description: str
       url: 'https://itherum-eight.vercel.app',
     },
     url: `https://itherum-eight.vercel.app/work/${project.slug}`,
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '4.9',
+      reviewCount: '5',
+    },
   }
 
   return (

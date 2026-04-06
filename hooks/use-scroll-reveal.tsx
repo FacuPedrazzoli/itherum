@@ -45,7 +45,8 @@ export function ScrollReveal({ children, className, delay = 0, duration = 0.5 }:
     <motion.div
       ref={ref}
       initial="hidden"
-      animate={variants.visible}
+      animate="visible"
+      variants={variants}
       className={className}
     >
       {children}

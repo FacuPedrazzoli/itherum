@@ -30,10 +30,20 @@ export const metadata: Metadata = {
     'Micro-agencia de software de Argentina. Desarrollo a medida, diseño de producto y consultoría técnica. Construimos tecnología con sentido común.',
   keywords: ['desarrollo web', 'software', 'agencia', 'Argentina', 'Next.js', 'TypeScript', 'UX'],
   authors: [{ name: 'Itherum' }],
+  robots: {
+    index: true,
+    follow: true,
+  },
   openGraph: {
     title: 'Itherum — Tecnología con sentido común',
     description: 'Micro-agencia de software de Argentina. Construimos tecnología con sentido común.',
     type: 'website',
+    locale: 'es_AR',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Itherum — Tecnología con sentido común',
+    description: 'Micro-agencia de software de Argentina. Construimos tecnología con sentido común.',
   },
 }
 

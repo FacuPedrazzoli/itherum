@@ -3,13 +3,15 @@
 import { useScroll, useTransform, useSpring, motionValue } from 'framer-motion'
 import { useRef } from 'react'
 
+type Offset = ['start end', 'end start']
+
 export function useScrollAnimation(options?: {
   target?: React.RefObject<HTMLElement>
-  offset?: string[]
+  offset?: Offset
 }) {
   const { scrollYProgress } = useScroll({
     target: options?.target,
-    offset: options?.offset || ['start end', 'end start']
+    offset: options?.offset ?? ['start end', 'end start']
   })
 
   const springOptions = { stiffness: 100, damping: 30, restDelta: 0.001 }
@@ -26,7 +28,7 @@ export function useParallax(speed: number = 0.5) {
   const ref = useRef<HTMLElement>(null)
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ['start end', 'end start']
+    offset: ['start end', 'end start'] as const
   })
 
   const y = useTransform(scrollYProgress, [0, 1], [0, -500 * speed])

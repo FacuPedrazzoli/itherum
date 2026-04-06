@@ -1,7 +1,14 @@
 {
-  "name": "my-project",
-  "version": "0.1.0",
+  "name": "itherum",
+  "version": "1.0.0",
+  "description": "Itherum — Tecnología con sentido común. Portfolio de micro-agencia de software argentina.",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/FacuPedrazzoli/itherum.git"
+  },
+  "author": "Itherum <hola@itherum.com>",
+  "keywords": ["portfolio", "web-development", "nextjs", "react", "typescript", "agency"],
   "scripts": {
     "dev": "next dev",
     "build": "next build",

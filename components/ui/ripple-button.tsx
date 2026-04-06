@@ -4,11 +4,13 @@ import { useState, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { cn } from '@/lib/utils'
 
-interface RippleButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface RippleButtonProps {
+  children: React.ReactNode
+  className?: string
   variant?: 'primary' | 'secondary' | 'ghost'
 }
 
-export function RippleButton({ children, className, variant = 'primary', ...props }: RippleButtonProps) {
+export function RippleButton({ children, className, variant = 'primary' }: RippleButtonProps) {
   const [ripples, setRipples] = useState<{ x: number; y: number; id: number }[]>([])
   const buttonRef = useRef<HTMLButtonElement>(null)
 
@@ -55,7 +57,7 @@ export function RippleButton({ children, className, variant = 'primary', ...prop
         color: variantStyles[variant].text,
         border: variant === 'secondary' ? '1px solid var(--color-border)' : 'none',
       }}
-      {...props}
+      type="button"
     >
       {children}
       {ripples.map((ripple) => (

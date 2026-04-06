@@ -251,7 +251,7 @@ export function Footer() {
               <span>LinkedIn</span>
             </motion.a>
             <motion.a
-              href="https://github.com"
+              href="https://github.com/FacuPedrazzoli/itherum"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-1.5 text-xs transition-all duration-200"

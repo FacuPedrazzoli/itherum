@@ -294,7 +294,7 @@ export function Hero() {
             >
               <motion.a
                 href="#proyectos"
-                whileHover={{ scale: 1.05, boxShadow: '0 0 40px hsl(157 76% 61% / 0.3)' }}
+                whileHover={{ scale: 1.05, boxShadow: '0 0 40px var(--color-accent-glow)' }}
                 whileTap={{ scale: 0.97 }}
                 className="group inline-flex items-center justify-center gap-3 px-10 py-4.5 rounded-sm font-semibold text-base"
                 style={{ backgroundColor: 'var(--color-accent)', color: '#0a0f0c' }}

@@ -14,8 +14,8 @@ export function HoverCard({ children, className }: HoverCardProps) {
       className={className}
       whileHover={{
         y: -4,
-        borderColor: 'hsl(157 76% 61% / 0.25)',
-        boxShadow: '0 20px 40px -15px hsl(157 30% 4% / 0.15)',
+        borderColor: 'var(--color-accent)',
+        boxShadow: '0 20px 40px -15px var(--color-accent-glow)',
       }}
       transition={{ duration: 0.3, ease: 'easeOut' as const }}
       style={{

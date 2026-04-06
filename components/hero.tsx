@@ -19,14 +19,14 @@ function AnimatedHeadline() {
           {WORDS.slice(0, 2).map((word, i) => (
             <motion.span
               key={i}
-              initial={{ opacity: 0, y: 40, filter: 'blur(8px)' }}
+              initial={{ opacity: 0, y: 40, filter: 'blur(4px)' }}
               animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
               transition={{ 
                 duration: 0.7, 
                 delay: 0.3 + i * 0.1,
                 ease: [0.16, 1, 0.3, 1]
               }}
-              className="inline-block"
+              className="inline-block will-change-transform"
             >
               {word === 'tecnología' ? (
                 <span 
@@ -45,22 +45,22 @@ function AnimatedHeadline() {
         <AnimatePresence>
           {showSecondLine && (
             <motion.div
-              initial={{ opacity: 0, y: 30, filter: 'blur(8px)' }}
+              initial={{ opacity: 0, y: 30, filter: 'blur(4px)' }}
               animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
               transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-              className="flex flex-wrap justify-center gap-x-2 sm:gap-x-3"
+              className="flex flex-wrap justify-center gap-x-2 sm:gap-x-3 will-change-transform"
             >
               {WORDS.slice(2).map((word, i) => (
                 <motion.span
                   key={i}
-                  initial={{ opacity: 0, y: 30, filter: 'blur(8px)' }}
+                  initial={{ opacity: 0, y: 30, filter: 'blur(4px)' }}
                   animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
                   transition={{ 
                     duration: 0.7, 
                     delay: i * 0.08,
                     ease: [0.16, 1, 0.3, 1]
                   }}
-                  className="inline-block"
+                  className="inline-block will-change-transform"
                 >
                   {word}
                 </motion.span>

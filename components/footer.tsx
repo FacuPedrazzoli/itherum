@@ -93,7 +93,7 @@ export function Footer() {
                 Newsletter con insights de producto y tecnología. Sin spam.
               </p>
             </div>
-            <form onSubmit={handleSubscribe} className="flex gap-2 min-w-[280px]">
+            <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-2 w-full sm:min-w-[280px] sm:max-w-[400px]">
               {!isSubscribed ? (
                 <>
                   <input
@@ -101,7 +101,7 @@ export function Footer() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="tu@email.com"
-                    className="flex-1 px-4 py-2.5 rounded-lg text-sm outline-none transition-all duration-200"
+                    className="w-full sm:flex-1 px-4 py-2.5 rounded-lg text-sm outline-none transition-all duration-200"
                     style={{
                       backgroundColor: 'var(--color-bg)',
                       border: '1px solid var(--color-border)',

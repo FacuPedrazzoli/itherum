@@ -328,7 +328,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              className="relative w-full max-w-3xl mx-auto"
+              className="relative w-full max-w-lg md:max-w-3xl mx-auto px-4"
             >
               <div 
                 className="absolute inset-0 opacity-[0.03] pointer-events-none"
@@ -338,7 +338,7 @@ export function Hero() {
                 }}
               />
               
-              <div className="grid grid-cols-3 gap-8 pt-8" style={{ borderTop: '1px solid var(--color-border)' }}>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 pt-6 md:pt-8" style={{ borderTop: '1px solid var(--color-border)' }}>
                 {[
                   { value: `+${c1}`, label: 'Proyectos', suffix: '' },
                   { value: c2, label: 'Servicios', suffix: '' },
@@ -352,7 +352,7 @@ export function Hero() {
                     className="text-center"
                   >
                     <motion.p 
-                      className="font-heading font-black text-[clamp(2.7rem,7.2vw,6.3rem)] leading-[1] tracking-[-0.04em]"
+                      className="font-heading font-black text-[clamp(1.8rem,6vw,6.3rem)] leading-[1] tracking-[-0.04em]"
                       style={{ color: 'var(--color-accent)' }}
                       initial={{ scale: 0.5 }}
                       animate={{ scale: 1 }}

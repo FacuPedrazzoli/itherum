@@ -137,7 +137,7 @@ export function Navbar() {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'tween', duration: 0.3, ease: 'easeInOut' }}
-              className="fixed top-0 right-0 bottom-0 z-50 w-80 flex flex-col p-8 pt-24 md:hidden"
+              className="fixed top-0 right-0 bottom-0 z-50 w-[280px] sm:w-80 flex flex-col p-8 pt-24 md:hidden"
               style={{
                 backgroundColor: 'var(--color-surface)',
                 borderLeft: '1px solid var(--color-border)',

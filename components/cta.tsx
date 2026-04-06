@@ -74,7 +74,7 @@ export function CTA() {
       />
 
       <div className="relative z-10 max-w-6xl mx-auto px-6">
-        <div className="flex flex-col lg:flex-row gap-12 lg:gap-16">
+        <div className="flex flex-col lg:flex-row gap-8 lg:gap-16">
           {/* LEFT COLUMN - FAQ + Benefits */}
           <div className="lg:w-[45%] lg:pr-8">
             <motion.div

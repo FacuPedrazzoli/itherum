@@ -165,7 +165,7 @@ export function Servicios() {
                   </div>
 
                   {/* Learn more link */}
-                  <div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-[-8px] group-hover:translate-x-0">
+                  <div className="flex items-center gap-2 opacity-0 sm:opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-[-8px] group-hover:translate-x-0">
                     <span 
                       className="text-sm font-medium"
                       style={{ color: 'var(--color-accent)' }}

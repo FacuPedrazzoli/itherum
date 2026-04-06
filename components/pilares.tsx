@@ -120,7 +120,7 @@ export function Pilares() {
           {/* Stats row */}
           <motion.div 
             variants={itemVariants} 
-            className="grid grid-cols-3 gap-3 md:gap-4 mb-12 md:mb-16"
+            className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4 mb-12 md:mb-16"
           >
             {stats.map(({ value, suffix, label, icon: Icon }) => (
               <motion.div
@@ -175,7 +175,7 @@ export function Pilares() {
               <motion.div
                 key={pillar.title}
                 variants={itemVariants}
-                className="relative px-0 md:px-10 pb-12 md:pb-0"
+                className="relative px-6 md:px-10 pb-8 md:pb-0"
               >
                 {idx < pillars.length - 1 && (
                   <div

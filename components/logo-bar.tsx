@@ -59,7 +59,7 @@ export function LogoBar() {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="grid grid-cols-3 gap-6 md:gap-8 text-center pt-8"
+          className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 text-center pt-8"
           style={{ borderTop: '1px solid var(--color-border)' }}
         >
           {stats.map((stat) => (

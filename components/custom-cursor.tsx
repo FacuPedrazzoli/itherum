@@ -7,9 +7,15 @@ export function CustomCursor() {
   const cursorX = useMotionValue(-100)
   const cursorY = useMotionValue(-100)
 
-  const springConfig = { damping: 25, stiffness: 600 }
-  const cursorXSpring = useSpring(cursorX, springConfig)
-  const cursorYSpring = useSpring(cursorY, springConfig)
+  const cursorXSpring = useSpring(cursorX, { damping: 25, stiffness: 800 })
+  const cursorYSpring = useSpring(cursorY, { damping: 25, stiffness: 800 })
+
+  const trail1X = useSpring(cursorX, { damping: 25, stiffness: 400 })
+  const trail1Y = useSpring(cursorY, { damping: 25, stiffness: 400 })
+  const trail2X = useSpring(cursorX, { damping: 28, stiffness: 350 })
+  const trail2Y = useSpring(cursorY, { damping: 28, stiffness: 350 })
+  const trail3X = useSpring(cursorX, { damping: 31, stiffness: 300 })
+  const trail3Y = useSpring(cursorY, { damping: 31, stiffness: 300 })
 
   const [isHovering, setIsHovering] = useState(false)
   const [isClicking, setIsClicking] = useState(false)
@@ -64,45 +70,36 @@ export function CustomCursor() {
 
   if (!isVisible && isHidden) return null
 
+  const trailDots = [
+    { x: trail1X, y: trail1Y, size: 4.5, opacity: 0.35 },
+    { x: trail2X, y: trail2Y, size: 3, opacity: 0.25 },
+    { x: trail3X, y: trail3Y, size: 1.5, opacity: 0.15 },
+  ]
+
   return (
     <>
-      {[0, 1, 2].map((i) => {
-        const delay = i * 0.015
-        const size = 6 - i * 1.5
-        const opacity = 0.3 - i * 0.08
-
-        return (
+      {trailDots.map((dot, i) => (
+        <motion.div
+          key={i}
+          className="fixed top-0 left-0 pointer-events-none z-[99998]"
+          style={{
+            x: dot.x,
+            y: dot.y,
+          }}
+        >
           <motion.div
-            key={i}
-            className="fixed top-0 left-0 pointer-events-none z-[99998]"
-            style={{
-              x: cursorX,
-              y: cursorY,
-            }}
             animate={{
-              x: cursorX.get() + delay * 10,
-              y: cursorY.get() + delay * 10,
+              opacity: isHidden ? 0 : dot.opacity,
             }}
-            transition={{
-              type: 'spring',
-              stiffness: 400 - i * 80,
-              damping: 30,
+            className="rounded-full"
+            style={{
+              width: dot.size,
+              height: dot.size,
+              backgroundColor: 'var(--color-accent)',
             }}
-          >
-            <motion.div
-              animate={{
-                opacity: isHidden ? 0 : opacity,
-              }}
-              className="rounded-full"
-              style={{
-                width: size,
-                height: size,
-                backgroundColor: 'var(--color-accent)',
-              }}
-            />
-          </motion.div>
-        )
-      })}
+          />
+        </motion.div>
+      ))}
 
       <motion.div
         className="fixed top-0 left-0 pointer-events-none z-[100000]"
@@ -111,7 +108,7 @@ export function CustomCursor() {
           y: cursorYSpring,
         }}
         animate={{
-          scale: isClicking ? 0.7 : isHovering ? 1.3 : 1,
+          scale: isClicking ? 0.8 : isHovering ? 1.4 : 1,
         }}
         transition={{ type: 'spring', stiffness: 500, damping: 25 }}
       >
@@ -135,8 +132,8 @@ export function CustomCursor() {
           y: cursorYSpring,
         }}
         animate={{
-          scale: isClicking ? 1.2 : isHovering ? 1.8 : 1.5,
-          opacity: isClicking ? 0.2 : isHovering ? 0.12 : 0.05,
+          scale: isClicking ? 1.2 : isHovering ? 2 : 1.5,
+          opacity: isClicking ? 0.25 : isHovering ? 0.12 : 0.05,
         }}
         transition={{ type: 'spring', stiffness: 300, damping: 25 }}
       >

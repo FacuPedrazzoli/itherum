@@ -50,7 +50,7 @@ function AnimatedHeadline() {
             >
               {word === 'tecnología' ? (
                 <span 
-                  className="inline-block bg-gradient-to-r from-[var(--color-accent)] via-white to-[var(--color-accent)] bg-[length:200%_auto] animate-gradient-shift bg-clip-text text-transparent"
+                  className="inline-block bg-gradient-to-r from-[var(--color-accent)] via-[var(--color-text-primary)] to-[var(--color-accent)] bg-[length:200%_auto] animate-gradient-shift bg-clip-text text-transparent"
                   style={{ 
                     WebkitTextFillColor: 'transparent',
                     backgroundClip: 'text',
@@ -297,7 +297,7 @@ export function Hero() {
                 whileHover={{ scale: 1.05, boxShadow: '0 0 40px var(--color-accent-glow)' }}
                 whileTap={{ scale: 0.97 }}
                 className="group inline-flex items-center justify-center gap-3 px-10 py-4.5 rounded-sm font-semibold text-base"
-                style={{ backgroundColor: 'var(--color-accent)', color: '#0a0f0c' }}
+                style={{ backgroundColor: 'var(--color-accent)', color: 'var(--color-bg)' }}
               >
                 Ver proyectos
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="group-hover:translate-x-1 transition-transform">

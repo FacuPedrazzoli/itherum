@@ -52,7 +52,7 @@ export function Navbar() {
         )}
         style={{
           backgroundColor: scrolled 
-            ? 'rgba(10, 15, 12, 0.85)' 
+            ? 'color-mix(in srgb, var(--color-bg) 85%, transparent)' 
             : 'transparent',
           borderBottomColor: scrolled 
             ? 'hsl(157 30% 8%)' 
@@ -99,7 +99,7 @@ export function Navbar() {
               className="text-sm font-semibold px-5 py-2.5 rounded-sm transition-all duration-200 cursor-pointer"
               style={{
                 backgroundColor: 'var(--color-accent)',
-                color: '#0a0f0c',
+                color: 'var(--color-bg)',
               }}
               onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#ffffff' }}
               onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = 'var(--color-accent)' }}

@@ -52,7 +52,7 @@ function AnimatedStat({ value, suffix, label }: { value: number; suffix: string;
       <div 
         className="font-heading font-extrabold leading-[1] mb-2"
         style={{ 
-          fontSize: 'clamp(2rem, 5vw, 3.5rem)',
+          fontSize: 'clamp(1.5rem, 3vw, 2.5rem)',
           color: 'var(--color-accent)',
           letterSpacing: '-0.04em',
           opacity: 0.15,

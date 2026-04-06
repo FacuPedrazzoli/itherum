@@ -413,7 +413,6 @@ function CarouselCard3D({
           fill
           sizes="(max-width: 768px) 90vw, 850px"
           className="object-cover"
-          style={{ transform: 'scale(1.1)' }}
           priority={isActive}
         />
         

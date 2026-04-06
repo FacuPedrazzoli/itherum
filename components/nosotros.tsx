@@ -93,7 +93,7 @@ export function Nosotros() {
   return (
     <section
       id="nosotros"
-      className="py-24 md:py-32 relative overflow-hidden"
+      className="pt-2 pb-12 md:pt-4 md:pb-20 relative overflow-hidden"
       style={{
         backgroundColor: 'var(--color-surface)',
         borderTop: '1px solid var(--color-border)',
@@ -114,8 +114,8 @@ export function Nosotros() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <div className="flex justify-center mb-8">
-            <div className="relative w-24 h-24">
+          <div className="flex justify-center mb-4">
+            <div className="relative w-48 h-48">
               <Image
                 src="/logo-sin-fondo.svg"
                 alt="Itherum"

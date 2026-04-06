@@ -301,7 +301,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              className="relative w-full max-w-sm md:max-w-3xl mx-auto px-2 sm:px-4"
+              className="relative w-full max-w-2xl md:max-w-4xl mx-auto px-4 sm:px-6"
             >
               <div 
                 className="absolute inset-0 opacity-[0.03] pointer-events-none"
@@ -311,11 +311,11 @@ export function Hero() {
                 }}
               />
               
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8 pt-6 md:pt-8" style={{ borderTop: '1px solid var(--color-border)' }}>
+              <div className="grid grid-cols-1 md:grid-cols-[1fr_1fr_1fr] place-items-center gap-6 md:gap-12 pt-6 md:pt-8" style={{ borderTop: '1px solid var(--color-border)' }}>
                 {[
                   { value: '20+', label: 'Proyectos', suffix: '' },
                   { value: '100%', label: 'Código revisado', suffix: '' },
-                  { value: '24h', label: 'Tiempo de respuesta', suffix: '' },
+                  { value: '<6h', label: 'Tiempo de respuesta', suffix: '' },
                 ].map((stat, idx) => (
                   <motion.div 
                     key={idx}
@@ -325,7 +325,7 @@ export function Hero() {
                     className="text-center"
                   >
                     <motion.p 
-                      className="font-heading font-black text-[clamp(1.5rem,5vw,6.3rem)] leading-[1] tracking-[-0.04em]"
+                      className="font-heading font-black text-[clamp(2rem,4vw,5rem)] leading-[1] tracking-[-0.04em]"
                       style={{ color: 'var(--color-accent)' }}
                       initial={{ scale: 0.5 }}
                       animate={{ scale: 1 }}

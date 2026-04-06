@@ -45,6 +45,9 @@ export const metadata: Metadata = {
     title: 'Itherum — Tecnología con sentido común',
     description: 'Micro-agencia de software de Argentina. Construimos tecnología con sentido común.',
   },
+  icons: {
+    icon: '/logo-sin-fondo.svg',
+  },
 }
 
 export default function RootLayout({

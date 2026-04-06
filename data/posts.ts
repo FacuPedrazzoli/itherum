@@ -14,95 +14,125 @@ export interface BlogPost {
 export const blogPosts: BlogPost[] = [
   {
     id: 1,
-    slug: 'por-que-nextjs-es-el-futuro-del-desarrollo-web',
-    title: 'Por qué Next.js es el futuro del desarrollo web',
-    excerpt: 'Exploramos las razones por las que Next.js se ha convertido en la elección preferida para proyectos web modernos.',
+    slug: 'construimos-software-que-dura-enfoque-arquitectura',
+    title: 'Construimos software que dura: nuestro enfoque de arquitectura',
+    excerpt: 'Por qué la arquitectura no es un lujo sino la base de todo proyecto que aspira a durar más de 6 meses.',
     content: `
-      <p>Next.js ha transformado fundamentalmente la forma en que construimos aplicaciones web. Con su arquitectura basada en React y su enfoque en el rendimiento, ofrece ventajas significativas para equipos de desarrollo.</p>
+      <p>Cada vez que nos contactan para un proyecto nuevo, hacemos una pregunta que muchos esperaban no escuchar: "¿Cuánto tiempo planeás que esta solución esté en uso?" La respuesta casi siempre es la misma: "Mucho." Y ahí empieza nuestra conversación sobre arquitectura.</p>
       
-      <h2>Rendimiento optimizado</h2>
-      <p>Una de las características más destacadas de Next.js es su capacidad para optimizar automáticamente el rendimiento. El Server-Side Rendering (SSR) y la Generación de Sitios Estáticos (SSG) permiten que las páginas se carguen más rápido, mejorando tanto la experiencia del usuario como el SEO.</p>
+      <h2>La deuda técnica no es un concepto académico</h2>
+      <p>En Itherum hemos visto proyectos que murieron no por ideas malas, sino por código que se volvió insostenible. Aplicaciones que necesitaban 3 meses de "refactorización" antes de poder agregar algo tan simple como un nuevo campo en un formulario. Sistemas que solo una persona entendía y que se convertía en cuello de botella cada vez que esa persona se enfermaba.</p>
+      <p>Esto no pasa cuando la arquitectura se piensa desde el día uno.</p>
       
-      <h2>Developer Experience</h2>
-      <p>La experiencia de desarrollo es excepcional. Hot Module Replacement (HMR), fast refresh, y un sistema de rutas basado en el sistema de archivos hacen que el desarrollo sea rápido e intuitivo.</p>
+      <h2>Nuestro framework de decisiones</h2>
+      <p>Cuando diseñamos la arquitectura de un proyecto, tenemos en cuenta 5 factores:</p>
+      <ul>
+        <li><strong>Escalabilidad real:</strong> No hablamos de escalar por escalar. Preguntamos: ¿cuál es el pico realista de usuarios? ¿Y si la solución tiene éxito masivo mañana?</li>
+        <li><strong>Mantenibilidad:</strong> Si un desarrollador nuevo lee el código por primera vez, ¿puede entenderlo en una semana? Si no, tenemos un problema.</li>
+        <li><strong>Costos de operación:</strong> Un backend que funciona perfecto en desarrollo puede costar $500/mes en producción. Diseñamos para el costo real, no el ideal.</li>
+        <li><strong>Seguridad desde el diseño:</strong> No es una capa que agregamos después. Es parte de cómo pensamos cada feature.</li>
+        <li><strong>Flexibilidad para cambios:</strong> Los requisitos cambian. La arquitectura debe absorber cambios sin requerir reescribir todo.</li>
+      </ul>
       
-      <h2>Escalabilidad</h2>
-      <p>Desde startups hasta grandes empresas, Next.js escala sin problemas. Vercel, Twitch, Hulu y muchas otras compañías confían en Next.js para sus productos de alto tráfico.</p>
+      <h2>Un caso real</h2>
+      <p>Trabajamos con un cliente que tenía una aplicación Rails de 8 años. El problema: cada feature nueva tardaba 3 semanas mínimo porque nadie entendía cómo interactuaban las 47 formas de validar un formulario.</p>
+      <p>Rebuild completo con arquitectura basada en domain-driven design. Tiempo: 4 meses. Resultado: features que antes tomaban 3 semanas ahora toman 2 días. El cliente redujo su equipo de 6 a 3 personas y entrega más valor que antes.</p>
+      
+      <h2>La pregunta incómoda</h2>
+      <p>Si tu desarrollador actual te dice que "el código está bien así", pero cada cambio tarda más que el anterior, tenés un problema de arquitectura. No de personas. No de tecnología. De diseño.</p>
+      <p>En Itherum, priorizamos la conversación honesta sobre lo que el proyecto necesita. Si eso significa decir que no a algo que vos querés pero no es viable, lo hacemos. Mejor que te enojes hoy a que llorés en 6 meses cuando el sistema colapse.</p>
     `,
     author: 'Itherum Team',
-    date: '2026-03-15',
-    readTime: '5 min',
-    tags: ['Next.js', 'React', 'Desarrollo Web'],
+    date: '2026-03-20',
+    readTime: '7 min',
+    tags: ['Arquitectura', 'Software', 'Deuda Técnica'],
     featured: true,
   },
   {
     id: 2,
-    slug: 'buenas-practicas-ux-para-formularios',
-    title: 'Buenas prácticas de UX para formularios',
-    excerpt: 'Guía completa sobre cómo diseñar formularios que los usuarios disfrutan completar.',
+    slug: 'por-que-rechazamos-proyectos',
+    title: 'Por qué rechazamos proyectos (y por qué eso nos hace mejores)',
+    excerpt: 'Rechazamos el 40% de los proyectos que nos contactan. Aquí te contamos por qué esa es nuestra estrategia, no nuestra debilidad.',
     content: `
-      <p>Los formularios son uno de los elementos más críticos en cualquier interfaz web. Un formulario bien diseñado puede significar la diferencia entre un usuario que completa una conversión o uno que abandona.</p>
+      <p>El mes pasado rechazamos 3 proyectos. Uno era un e-commerce para una PYME con un presupuesto razonable. Otro era una app de delivery con potencial real. El tercero era un MVP de una startup que ya tenía inversión.</p>
+      <p>¿Por qué rechazarlos? Cada uno tenía un problema fundamental que los hacía candidatos improbables para éxito real.</p>
       
-      <h2>Simplicidad es clave</h2>
-      <p>Cada campo que agregues es una barrera para el usuario. Solo pide la información absolutamente necesaria. Si puedes resolverlo con un campo en lugar de tres, hazlo.</p>
+      <h2>Nuestra política: decir que no cuando es no</h2>
+      <p>En nuestra primera llamada siempre preguntamos: "¿Qué pasa si esto funciona?" Parece contra-intuitivo, pero la mayoría de los clientes nunca pensaron en esa pregunta. Están tan enfocados en el "si funciona" que no tienen plan para el éxito.</p>
       
-      <h2>Validación en tiempo real</h2>
-      <p>La validación mientras el usuario escribe es mucho mejor que mostrar errores al enviar. Esto permite corregir errores inmediatamente y reduce la frustración.</p>
+      <h2>Las razones más comunes por las que decimos que no</h2>
+      <ul>
+        <li><strong>"Ya tengo un desarrollador pero no me entrega":</strong> Si tu desarrollador actual no entrega, un nuevo desarrollador tampoco lo va a hacer. El problema rara vez es capacidad técnica.</li>
+        <li><strong>"Necesito algo rápido, no importa la calidad":</strong> Esto casi siempre termina en un proyecto que hay que rehacer completo en 12-18 meses. Más caro, más lento, más frustrante.</li>
+        <li><strong>"Mi idea va a ser el próximo Mercado Libre":</strong> Las ideas grandes están bien, pero necesitamos entender qué problema específico resuelve tu producto y para quién. Sin eso, no hay arquitectura que aguante.</li>
+        <li><strong>"Tengo $X y necesito que haga todo":</strong> Los presupuestos irrealistas generan productos a medias. Preferimos decirte qué podemos hacer con tu presupuesto real que prometerte el mundo y entregar nada.</li>
+      </ul>
       
-      <h2>Feedback visual claro</h2>
-      <p>El usuario debe saber en todo momento qué está pasando. Estados de carga, confirmaciones de éxito y mensajes de error claros son esenciales.</p>
+      <h2>Lo que pasa cuando decimos que sí</h2>
+      <p>Cuando tomamos un proyecto, invertimos tiempo real en entender tu negocio. No empezamos a codear hasta que entendemos el problema que resolvés, no el producto que querés construir.</p>
+      <p>Esto nos ha permitido tener una tasa de retención del 98%. Nuestros clientes vuelven. No porque somos baratos o rápidos, sino porque entregamos lo que prometemos.</p>
+      
+      <h2>El rechazo no es el final</h2>
+      <p>Cuando rechazamos un proyecto, siempre damos una explicación. A veces, después de unos meses, el cliente vuelve con el problema más claro, el presupuesto más realista, o el equipo interno listo para trabajar con un partner externo.</p>
+      <p>Esos son los proyectos que amamos tomar.</p>
     `,
     author: 'Itherum Team',
-    date: '2026-03-08',
-    readTime: '4 min',
-    tags: ['UX', 'Diseño', 'Formularios'],
+    date: '2026-03-10',
+    readTime: '6 min',
+    tags: ['Estrategia', 'Proyectos', 'Cliente'],
     featured: true,
   },
   {
     id: 3,
-    slug: 'como-elegir-la-tecnologia-correcta',
-    title: 'Cómo elegir la tecnología correcta para tu proyecto',
-    excerpt: 'Factores importantes a considerar al seleccionar el stack tecnológico para tu próximo proyecto.',
+    slug: 'de-idea-a-producto-como-estructuramos-un-proyecto',
+    title: 'De idea a producto: cómo estructuramos un proyecto desde cero',
+    excerpt: 'Nuestro proceso para transformar una idea en un producto que funciona. Sin magia, sin misterio.',
     content: `
-      <p>Elegir la tecnología equivocada puede condemnar un proyecto al fracaso. Aquí te compartimos algunos factores cruciales que deberías considerar.</p>
+      <p>Recibimos mucho esta pregunta: "¿Cómo trabajan? ¿Cuál es su proceso?" La respuesta honesta es: depende. Depende del proyecto, del cliente, de los plazos. Pero hay un framework que usamos como base y que queremos compartir porque creemos que cualquier proyecto serio debería seguir algo similar.</p>
       
-      <h2>Conoce tu caso de uso</h2>
-      <p>No existe una tecnología universalmente mejor. El mejor stack depende del problema que necesitas resolver. Un e-commerce tiene necesidades diferentes a una red social.</p>
+      <h2>Fase 0: Descubrimiento (1-2 semanas)</h2>
+      <p>Antes de escribir una línea de código, invertimos tiempo en entender:</p>
+      <ul>
+        <li><strong>El problema real:</strong> ¿Qué problema específico resuelve este producto? ¿Para quién? ¿Cómo lo hacen hoy?</li>
+        <li><strong>El contexto:</strong> ¿Por qué ahora? ¿Qué cambió que hace que este sea el momento correcto?</li>
+        <li><strong>Las restricciones:</strong> Presupuesto, tiempo, equipo, tecnología existente. Todo esto define qué es viable.</li>
+      </ul>
+      <p>El output de esta fase es un documento de 3-5 páginas que define scope, riesgos, y propuesta de valor. Si no podemos escribir esto claramente, no empezamos.</p>
       
-      <h2>Considera el equipo</h2>
-      <p>La tecnología más poderosa no sirve de nada si tu equipo no la conoce. A veces es mejor elegir herramientas que el equipo pueda dominar rápidamente.</p>
+      <h2>Fase 1: Arquitectura y diseño (2-3 semanas)</h2>
+      <p>Con el descubrimiento hecho, definimos:</p>
+      <ul>
+        <li><strong>Arquitectura técnica:</strong> No escribimos código todavía. Definimos cómo las piezas se van a conectar.</li>
+        <li><strong>UX/UI:</strong> Wireframes primero. Prototipos después. Validación con usuarios reales antes de desarrollar.</li>
+        <li><strong>Stack tecnológico:</strong> La tecnología que mejor se adapta al proyecto, no la más nueva o la que sabemos mejor.</li>
+      </ul>
       
-      <h2>Piensa en el largo plazo</h2>
-      <p>El mantenimiento a largo plazo es crucial. Elige tecnologías con comunidades activas y buen soporte para asegurar que tu proyecto pueda evolucionar.</p>
+      <h2>Fase 2: Desarrollo iterativo (4-12 semanas)</h2>
+      <p>Desarrollamos en sprints de 2 semanas. Al final de cada sprint, entregamos algo funcional. No esperes 3 meses para ver el producto.</p>
+      <p>Durante el desarrollo:</p>
+      <ul>
+        <li>Demo quincenal obligatorio con el cliente</li>
+        <li>Testing continuo con usuarios reales (no ficticios)</li>
+        <li>Ajustes de scope solo si hay justificación clara</li>
+      </ul>
+      
+      <h2>Fase 3: Lanzamiento y post-lanzamiento</h2>
+      <p>Lanzar no es el final. Es el comienzo de la segunda fase más importante: aprender del uso real.</p>
+      <p>Ofrecemos:</p>
+      <ul>
+        <li>Monitoreo de métricas las primeras 4 semanas</li>
+        <li>Support的反应 rápido para issues críticos</li>
+        <li>Sesiones de retrospectiva para planificar la siguiente versión</li>
+      </ul>
+      
+      <h2>El secreto</h2>
+      <p>No hay secreto. Hay disciplina. Seguimos el proceso porque funciona, no porque nos gusta la burocracia. Cada fase existe para reducir riesgo y aumentar las chances de que el producto que construimos sea el producto que realmente necesitás.</p>
     `,
     author: 'Itherum Team',
     date: '2026-02-28',
-    readTime: '6 min',
-    tags: ['Tecnología', 'Planificación', 'Proyectos'],
-    featured: false,
-  },
-  {
-    id: 4,
-    slug: 'importancia-del-codigo-mantenible',
-    title: 'La importancia del código mantenible',
-    excerpt: 'Por qué escribir código que otros pueden entender es tan importante como escribir código que funciona.',
-    content: `
-      <p>El código que escribimos hoy será leído y modificado por otros (incluido nosotros mismos en el futuro). Código mantenible es código que valoriza el tiempo del equipo.</p>
-      
-      <h2>Nomenclatura clara</h2>
-      <p>Los nombres de variables, funciones y componentes deben explicar su propósito. Si necesitas un comentario para explicar qué hace algo, probablemente el nombre no es suficientemente claro.</p>
-      
-      <h2>Principio de responsabilidad única</h2>
-      <p>Cada función, módulo o componente debe hacer una sola cosa y hacerla bien. Esto facilita el testing, el debugging y la evolución del código.</p>
-      
-      <h2>Documentación necesaria</h2>
-      <p>El código autodocumentado es ideal, pero a veces necesitamos explicar el "por qué". Los comments deben explicar intenciones, no qué hace el código.</p>
-    `,
-    author: 'Itherum Team',
-    date: '2026-02-20',
-    readTime: '5 min',
-    tags: ['Código', 'Best Practices', 'Desarrollo'],
-    featured: false,
+    readTime: '8 min',
+    tags: ['Proceso', 'Desarrollo', 'Producto'],
+    featured: true,
   },
 ]
 

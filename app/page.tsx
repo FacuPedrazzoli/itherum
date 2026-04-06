@@ -2,7 +2,7 @@ import { Navbar } from '@/components/navbar'
 import { Hero } from '@/components/hero'
 import { LogoBar } from '@/components/logo-bar'
 import { Servicios } from '@/components/servicios'
-import { Pilares } from '@/components/pilares'
+import { Nosotros } from '@/components/nosotros'
 import { Proyectos } from '@/components/proyectos'
 import { Diferencial } from '@/components/diferencial'
 import { Stack } from '@/components/stack'
@@ -20,7 +20,7 @@ export default function Home() {
       <Hero />
       <LogoBar />
       <Servicios />
-      <Pilares />
+      <Nosotros />
       <Proyectos />
       <Diferencial />
       <Stack />

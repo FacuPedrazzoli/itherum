@@ -2,7 +2,7 @@ import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
-import { ArrowLeft, ArrowRight, CheckCircle2 } from 'lucide-react'
+import { ArrowLeft, ArrowRight, CheckCircle2, Quote } from 'lucide-react'
 import { getProjectBySlug, projects } from '@/data/projects'
 
 interface Props {
@@ -173,8 +173,79 @@ export default async function CaseStudyPage({ params }: Props) {
                 </p>
               </div>
             </div>
+
+            {project.metrics && project.metrics.length > 0 && (
+              <div
+                className="rounded-2xl p-6"
+                style={{
+                  backgroundColor: 'var(--color-surface)',
+                  border: '1px solid var(--color-border)',
+                }}
+              >
+                <h3
+                  className="text-sm font-semibold uppercase tracking-wider mb-4"
+                  style={{ color: 'var(--color-text-muted)' }}
+                >
+                  Métricas clave
+                </h3>
+                <div className="grid grid-cols-3 gap-4">
+                  {project.metrics.map((metric) => (
+                    <div key={metric.label} className="text-center">
+                      <div
+                        className="font-heading font-bold text-2xl mb-1"
+                        style={{ color: 'var(--color-accent)' }}
+                      >
+                        {metric.value}
+                      </div>
+                      <div className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
+                        {metric.label}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         </div>
+
+        {project.testimonial && (
+          <div className="mt-12">
+            <div
+              className="rounded-2xl p-8 relative"
+              style={{
+                backgroundColor: 'var(--color-surface)',
+                border: '1px solid var(--color-border)',
+              }}
+            >
+              <Quote
+                size={32}
+                className="absolute top-6 right-6 opacity-20"
+                style={{ color: 'var(--color-accent)' }}
+              />
+              <blockquote className="relative">
+                <p
+                  className="text-lg md:text-xl mb-4 italic"
+                  style={{ color: 'var(--color-text-primary)' }}
+                >
+                  &ldquo;{project.testimonial.quote}&rdquo;
+                </p>
+                <footer className="flex items-center gap-3">
+                  <div>
+                    <div
+                      className="font-semibold"
+                      style={{ color: 'var(--color-text-primary)' }}
+                    >
+                      {project.testimonial.author}
+                    </div>
+                    <div className="text-sm" style={{ color: 'var(--color-text-muted)' }}>
+                      {project.testimonial.role}
+                    </div>
+                  </div>
+                </footer>
+              </blockquote>
+            </div>
+          </div>
+        )}
 
         <div className="mt-16">
           <h3

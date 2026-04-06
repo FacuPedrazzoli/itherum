@@ -518,3 +518,15 @@ a:focus-visible {
 .animate-glow-pulse {
   animation: glowPulse 2s ease-in-out infinite;
 }
+
+/* Custom cursor - force none on interactive elements */
+button,
+a,
+input,
+textarea,
+select,
+[role="button"],
+[data-cursor-hover],
+.cursor-interactive {
+  cursor: none !important;
+}
